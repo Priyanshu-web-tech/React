@@ -1,0 +1,38 @@
+1.) Use types for applications and Interfaces for building libraries!
+
+2.)Generics(General Type):
+type ListProps<T> = {
+  items: T[]
+  onClick: (value: T) => void
+}
+
+export const List = <T extends { id: number }>({
+  items,
+  onClick
+}: ListProps<T>) => {
+  return (
+    <div></div>
+  )
+}
+
+3.)Restricting Props:
+type RandomNumberType = {
+  value: number
+}
+
+type PositiveNumber = RandomNumberType & {
+  isPositive: boolean
+  isNegative?: never
+  isZero?: never
+}
+
+
+4.)Template Literal and Exclude:
+type HorizontalPosition = 'left' | 'center' | 'right'
+type VerticalPosition = 'top' | 'center' | 'bottom'
+
+type ToastProps = {
+  position:
+     Exclude<`${HorizontalPosition}-${VerticalPosition}`, 'center-center'>
+    | 'center'
+}
